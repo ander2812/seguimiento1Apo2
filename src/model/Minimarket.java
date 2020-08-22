@@ -5,55 +5,57 @@ import java.util.List;
 import java.util.ArrayList;
 
 import exception.DocNumberException;
+import exception.TypeDocumentException;
 
 import java.time.LocalDate;
 
 public class Minimarket {
 
-	
+	int sum = 0;
 
-	private List<Client> client;
+	private final List<Client> client;
 
 	public String name;
-	
-	
 
 	public Minimarket() {
 
 		client = new ArrayList<>();
 
 		this.name = name;
-		
-
 
 	}
 
-	public void addClient(String typeDocument, String docNumber) throws
-	DocNumberException{
-		
-		int day= LocalDate.now().getDayOfMonth();
-		
-		if(getNumDocument()/2==0 & day/2==0 ) {
-			
-			throw new DocNumberException(docNumber);
-			
-			
-			
-			
-		}
-		
-		Client clients = new Client(typeDocument, docNumber) ;
-		
+	public void addClient(String typeDocument, String docNumber) throws DocNumberException, TypeDocumentException {
+		sum++;
+
+		int day = LocalDate.now().getDayOfMonth();
+
+		Client clients = new Client(typeDocument, docNumber);
+
 		client.add(clients);
-		
-	
-			
-			
+
+		if (clients.getTypeDocument().equalsIgnoreCase("TI")) {
+
+			throw new TypeDocumentException(typeDocument);
+
+		} else if (getNumDocument() % 2 == 0 && day % 2 == 0 || getNumDocument() % 2 != 0 && day % 2 != 0) {
+
+			throw new DocNumberException(docNumber);
+
+		} else if (getNumDocument() % 2 != 0 && day % 2 == 0 || getNumDocument() % 2 == 0 && day % 2 != 0) {
+
+			Client clients2 = new Client(typeDocument, docNumber);
+
+			client.add(clients2);
+
+		}
+
 	}
 
 	public int getNumDocument() {
 
 		char num = 0;
+		int numDoc;
 
 		for (int i = 0; i < client.size(); i++) {
 
@@ -61,16 +63,14 @@ public class Minimarket {
 
 		}
 
-		String num2 = Character.toString(num);
-		
-		int numDoc = Integer.parseInt(num2);
+		numDoc = Character.getNumericValue(num);
 
 		return numDoc;
 
 	}
-	
-	public List<Client> getClient(){
-		                               
+
+	public List<Client> getClient() {
+
 		return client;
 	}
 
@@ -78,8 +78,12 @@ public class Minimarket {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
+	}
+
+	public int getSum() {
+		return sum;
 	}
 
 }

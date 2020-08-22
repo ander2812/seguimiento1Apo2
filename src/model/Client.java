@@ -9,7 +9,7 @@ public class Client {
 	public Client(String typeDocument, String docNumber) {
 		
 		this.docNumber=docNumber;
-		this.docNumber=docNumber;
+		this.typeDocument=typeDocument;
 	}
 
 	public String getTypeDocument() {
