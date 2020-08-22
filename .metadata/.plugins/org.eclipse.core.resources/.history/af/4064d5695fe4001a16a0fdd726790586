@@ -1,0 +1,42 @@
+package model;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import exception.DocNumberException;
+import exception.TypeDocumentException;
+
+class MinimarketTest {
+	private Minimarket miniMarket;
+	
+	public void setupScenary1() {
+		
+		miniMarket = new Minimarket();
+	}
+
+	@Test
+	void testaddClient_1() {
+		setupScenary1();
+		String typeDocument= "cc";
+		String docNumber= "123456";
+		try {
+			miniMarket.addClient(typeDocument, docNumber);
+			
+			assertEquals(1,miniMarket.getClient().size());
+		} catch (DocNumberException e) {
+			fail("DocNumberException isn't expected here");
+			
+			
+			
+			
+			assertEquals(1,miniMarket.getClient().size());
+			assertEquals(1,miniMarket.getClient().get(0).getDocNumber());
+			assertEquals(1,miniMarket.getClient().get(0).getTypeDocument());
+		} catch (TypeDocumentException td) {
+			fail("TypeDocumentException isn't expected here");
+			
+		}
+	}
+
+}

@@ -13,15 +13,17 @@ public class Minimarket {
 
 	int sum = 0;
 
-	private final List<Client> client;
+	private List<Client> client;
+	private List<Client> inClient;
 
 	public String name;
 
 	public Minimarket() {
 
 		client = new ArrayList<>();
+		inClient = new ArrayList<>();
 
-		this.name = name;
+		this.name = "Mi barrio te quiere";
 
 	}
 
@@ -47,9 +49,7 @@ public class Minimarket {
 
 		} else if (getNumDocument() % 2 != 0 && day % 2 == 0 || getNumDocument() % 2 == 0 && day % 2 != 0) {
 
-			Client clients2 = new Client(typeDocument, docNumber);
-
-			client.add(clients2);
+			inClient.add(clients);
 
 		}
 
