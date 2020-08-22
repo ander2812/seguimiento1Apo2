@@ -31,10 +31,13 @@ public class Minimarket {
 		int day = LocalDate.now().getDayOfMonth();
 
 		Client clients = new Client(typeDocument, docNumber);
-
 		client.add(clients);
 
 		if (clients.getTypeDocument().equalsIgnoreCase("TI")) {
+			
+			
+
+		
 
 			throw new TypeDocumentException(typeDocument);
 
